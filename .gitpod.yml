@@ -6,18 +6,17 @@
 
 # two tasks opened in two views in VS Code, one on the left, the other on the right
 
+image: gitpod/workspace-postgres
+
 tasks:
     - name: run back-end
+      init: npm install
+      command: npm start
       openMode: split-left
-      command: |
-          npm install pg dotenv 
-          npm install 
-          npm start
 
     - name: run front-end
-      openMode: split-right
+      init: cd client && npm install
       command: |
-          cd client 
-          npm install 
           echo "REACT_APP_API_URL=$(gp url 3001)" > .env 
           npm start
+      openMode: split-right
